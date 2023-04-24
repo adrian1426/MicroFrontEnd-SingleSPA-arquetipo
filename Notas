@@ -1,2 +1,6 @@
-1.-mf-navbar: React js
+1.-mf-navbar: ReactJS
 npm start -- --port 3001
+
+2.-mf-profile: Angular
+npm start -- --port 3002
+npx ng s --port 3002
