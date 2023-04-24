@@ -6,6 +6,12 @@ registerApplication({
   activeWhen: ["/"]
 });
 
+registerApplication({
+  name: "@axity/mf-profile",
+  app: () => System.import("@axity/mf-profile"),
+  activeWhen: ["/"]
+});
+
 start({
   urlRerouteOnly: true,
 });
