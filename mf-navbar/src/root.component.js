@@ -1,10 +1,10 @@
-import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import Navbar from "./components/Navbar/Navbar";
 
 export default function Root(props) {
 
   return (
-    <ErrorBoundary componentName='mf-navbar' >
+    <ErrorBoundary componentName={props.name} >
       <Navbar {...props} />
     </ErrorBoundary>
   );
