@@ -1,6 +1,10 @@
 1.-mf-navbar: ReactJS
-npm start -- --port 3001
+domain: axity
+port:   3001
+run:    npm start -- --port 3001
 
 2.-mf-profile: Angular
-npm start -- --port 3002
-npx ng s --port 3002
+domain: axity
+port:   3002
+run:    npm start -- --port 3002
+run:    npx ng s --port 3002
