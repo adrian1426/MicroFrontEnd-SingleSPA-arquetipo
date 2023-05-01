@@ -9,7 +9,7 @@ registerApplication({
 registerApplication({
   name: "@axity/mf-profile",
   app: () => System.import("@axity/mf-profile"),
-  activeWhen: ["/"]
+  activeWhen: ["/profile"]
 });
 
 start({
