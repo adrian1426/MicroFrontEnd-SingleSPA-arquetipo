@@ -12,9 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import StorefrontIcon from '@mui/icons-material/Storefront';
-
-const pages = ['Catalogos', 'Carrito'];
-const settings = ['Perfil', 'Salir'];
+import { routes } from '../../constants/routeConstants';
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,12 +25,22 @@ function Navbar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (route) => {
+    window.history.pushState(null, null, route);
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (onlyClose, route) => {
+
+    if (!onlyClose) {
+      window.history.pushState(null, null, route);
+    }
+
     setAnchorElUser(null);
+  };
+
+  const handleGoHome = () => {
+    window.history.pushState(null, null, '/');
   };
 
   return (
@@ -40,16 +48,20 @@ function Navbar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-          <StorefrontIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }} />
+          <StorefrontIcon
+            sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }}
+            style={{ cursor: 'pointer' }}
+            onClick={handleGoHome}
+          />
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
-            {pages.map((page) => (
+            {routes.pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.route}
+                onClick={() => handleCloseNavMenu(page.route)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>
@@ -76,9 +88,9 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {routes.settings.map((setting) => (
+                <MenuItem key={setting.route} onClick={() => handleCloseUserMenu(false, setting.route)}>
+                  <Typography textAlign="center">{setting.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
